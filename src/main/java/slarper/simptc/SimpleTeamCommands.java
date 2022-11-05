@@ -7,9 +7,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.Logger;
-import slarper.simptc.command.Home;
-import slarper.simptc.command.Sethome;
-import slarper.simptc.command.To;
+import slarper.simptc.command.*;
 
 @Mod(modid = SimpleTeamCommands.MODID, name = SimpleTeamCommands.NAME, version = SimpleTeamCommands.VERSION)
 public class SimpleTeamCommands
@@ -38,6 +36,8 @@ public class SimpleTeamCommands
         event.registerServerCommand(new To());
         event.registerServerCommand(new Sethome());
         event.registerServerCommand(new Home());
+        event.registerServerCommand(new Here());
+        event.registerServerCommand(new Back());
     }
 
     @SidedProxy(clientSide = "slarper.simptc.CommonProxy", serverSide = "slarper.simptc.CommonProxy")

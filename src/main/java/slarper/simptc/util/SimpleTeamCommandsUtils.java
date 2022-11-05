@@ -6,6 +6,8 @@ import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec2f;
+import slarper.simptc.capability.IPlayerBlockPos;
+import slarper.simptc.capability.back.PlayerBackProvider;
 
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -13,6 +15,12 @@ import java.util.Optional;
 import java.util.Set;
 
 public class SimpleTeamCommandsUtils {
+    public static void tpCanBack(EntityPlayerMP teleportingPlayer, BlockPos pos, Vec2f pitchYaw){
+        IPlayerBlockPos back = teleportingPlayer.getCapability(PlayerBackProvider.PLAYER_BACK_CAPABILITY, null);
+        BlockPos oldBack = new BlockPos(back.get().getX(), back.get().getY(), back.get().getZ());
+        playerTp(teleportingPlayer, pos, pitchYaw);
+        back.set(oldBack);
+    }
 
     public static void playerTp(EntityPlayerMP teleportingPlayer, BlockPos pos, Vec2f pitchYaw) {
         Set<SPacketPlayerPosLook.EnumFlags> set = EnumSet.noneOf(SPacketPlayerPosLook.EnumFlags.class);
@@ -26,7 +34,7 @@ public class SimpleTeamCommandsUtils {
     public static void playerToPlayer(EntityPlayerMP teleportingPlayer, EntityPlayerMP toPlayer) {
         BlockPos pos = toPlayer.getPosition();
         Vec2f pitchYaw = toPlayer.getPitchYaw();
-        playerTp(teleportingPlayer, pos, pitchYaw);
+        tpCanBack(teleportingPlayer, pos, pitchYaw);
     }
 
     public static String findAnotherPlayerName(MinecraftServer server, ICommandSender sender) {

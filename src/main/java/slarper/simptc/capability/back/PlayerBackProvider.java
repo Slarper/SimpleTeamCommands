@@ -1,4 +1,4 @@
-package slarper.simptc.capability.home;
+package slarper.simptc.capability.back;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
@@ -10,31 +10,31 @@ import slarper.simptc.capability.IPlayerBlockPos;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class PlayerHomeProvider implements ICapabilitySerializable<NBTBase> {
+public class PlayerBackProvider implements ICapabilitySerializable<NBTBase> {
     @CapabilityInject(IPlayerBlockPos.class)
-    public static final Capability<IPlayerBlockPos> PLAYER_HOME_CAPABILITY = null;
+    public static final Capability<IPlayerBlockPos> PLAYER_BACK_CAPABILITY = null;
 
-    private final IPlayerBlockPos instance = PLAYER_HOME_CAPABILITY.getDefaultInstance();
+    private final IPlayerBlockPos instance = PLAYER_BACK_CAPABILITY.getDefaultInstance();
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-        return capability == PLAYER_HOME_CAPABILITY;
+        return capability == PLAYER_BACK_CAPABILITY;
     }
 
     @Nullable
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-        return capability == PLAYER_HOME_CAPABILITY ? PLAYER_HOME_CAPABILITY.cast(this.instance) : null;
+        return capability == PLAYER_BACK_CAPABILITY ? PLAYER_BACK_CAPABILITY.cast(this.instance) : null;
     }
 
     @Override
     public NBTBase serializeNBT() {
-        return PLAYER_HOME_CAPABILITY.getStorage().writeNBT(PLAYER_HOME_CAPABILITY, this.instance, null);
+        return PLAYER_BACK_CAPABILITY.getStorage().writeNBT(PLAYER_BACK_CAPABILITY, this.instance, null);
     }
 
     @Override
     public void deserializeNBT(NBTBase nbt) {
-        PLAYER_HOME_CAPABILITY.getStorage().readNBT(PLAYER_HOME_CAPABILITY, this.instance, null, nbt);
+        PLAYER_BACK_CAPABILITY.getStorage().readNBT(PLAYER_BACK_CAPABILITY, this.instance, null, nbt);
     }
 
 }

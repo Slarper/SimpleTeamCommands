@@ -4,7 +4,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import slarper.simptc.capability.home.IPlayerHome;
+import slarper.simptc.capability.IPlayerBlockPos;
 import slarper.simptc.capability.home.PlayerHomeProvider;
 import slarper.simptc.util.SimpleTeamCommandsUtils;
 
@@ -23,8 +23,8 @@ public class Home extends CommandBase {
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) {
         if (sender instanceof EntityPlayerMP) {
             EntityPlayerMP player = ((EntityPlayerMP) sender);
-            IPlayerHome home = player.getCapability(PlayerHomeProvider.PLAYER_HOME_CAPABILITY,null);
-            SimpleTeamCommandsUtils.playerTp(player, home.getPlayerHome(), player.getPitchYaw());
+            IPlayerBlockPos home = player.getCapability(PlayerHomeProvider.PLAYER_HOME_CAPABILITY,null);
+            SimpleTeamCommandsUtils.tpCanBack(player, home.get(), player.getPitchYaw());
         }
     }
 

@@ -1,32 +1,31 @@
 package slarper.simptc.command;
 
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import slarper.simptc.capability.IPlayerBlockPos;
-import slarper.simptc.capability.home.PlayerHomeProvider;
+import slarper.simptc.capability.back.PlayerBackProvider;
+import slarper.simptc.util.SimpleTeamCommandsUtils;
 
-/*
- * sethome : add current postion to player entity's 'home' nbt.
- */
-public class Sethome extends CommandBase {
+public class Back extends CommandBase {
     @Override
     public String getName() {
-        return "sethome";
+        return "back";
     }
 
     @Override
-    public String getUsage( ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         return null;
     }
 
     @Override
-    public void execute(MinecraftServer server, ICommandSender sender, String[] args) {
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (sender instanceof EntityPlayerMP) {
             EntityPlayerMP player = ((EntityPlayerMP) sender);
-            IPlayerBlockPos home = player.getCapability(PlayerHomeProvider.PLAYER_HOME_CAPABILITY,null);
-            home.set(player.getPosition());
+            IPlayerBlockPos back = player.getCapability(PlayerBackProvider.PLAYER_BACK_CAPABILITY,null);
+            SimpleTeamCommandsUtils.tpCanBack(player, back.get(), player.getPitchYaw());
         }
     }
 

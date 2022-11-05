@@ -1,4 +1,4 @@
-package slarper.simptc.capability.home;
+package slarper.simptc.capability;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagIntArray;
@@ -8,26 +8,26 @@ import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
 
-public class PlayerHomeStorage implements Capability.IStorage<IPlayerHome> {
+public class PlayerBlockPosStorage implements Capability.IStorage<IPlayerBlockPos> {
     @Nullable
     @Override
-    public NBTBase writeNBT(Capability<IPlayerHome> capability, IPlayerHome instance, EnumFacing side) {
+    public NBTBase writeNBT(Capability<IPlayerBlockPos> capability, IPlayerBlockPos instance, EnumFacing side) {
         int[] intArray = new int[]{
-                instance.getPlayerHome().getX(),
-                instance.getPlayerHome().getY(),
-                instance.getPlayerHome().getZ()
+                instance.get().getX(),
+                instance.get().getY(),
+                instance.get().getZ()
         };
         return new NBTTagIntArray(intArray);
     }
 
     @Override
-    public void readNBT(Capability<IPlayerHome> capability, IPlayerHome instance, EnumFacing side, NBTBase nbt) {
+    public void readNBT(Capability<IPlayerBlockPos> capability, IPlayerBlockPos instance, EnumFacing side, NBTBase nbt) {
         BlockPos pos = new BlockPos(
                 ((NBTTagIntArray)nbt).getIntArray()[0],
                 ((NBTTagIntArray)nbt).getIntArray()[1],
                 ((NBTTagIntArray)nbt).getIntArray()[2]
         );
 
-        instance.setPlayerHome(pos);
+        instance.set(pos);
     }
 }
