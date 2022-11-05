@@ -38,7 +38,7 @@ public class To extends CommandBase {
         if (playerName != null){
             EntityPlayerMP player = getPlayer(server, sender, playerName);
             EntityPlayerMP sender1 = getCommandSenderAsPlayer(sender);
-            SimpleTeamCommandsUtils.playerToPlayer(player, sender1);
+            SimpleTeamCommandsUtils.playerToPlayer(sender1, player);
         }
     }
 
