@@ -29,7 +29,7 @@ public class To extends CommandBase {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        String playerName = null;
+        String playerName;
         if (args.length == 0) {
             Optional<String> playerName1 = Arrays.stream(server.getOnlinePlayerNames())
                     .filter(name -> !name.equals(sender.getName())).findFirst();
