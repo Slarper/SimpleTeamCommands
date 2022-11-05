@@ -5,8 +5,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec2f;
-import slarper.simptc.capability.back.IPlayerBack;
 import slarper.simptc.capability.back.PlayerBackProvider;
 
 import java.util.Arrays;
@@ -15,24 +13,27 @@ import java.util.Optional;
 import java.util.Set;
 
 public class SimpleTeamCommandsUtils {
-    public static void tpCanBack(EntityPlayerMP teleportingPlayer, BlockPos pos, Vec2f pitchYaw){
+    public static void tpCanBack(EntityPlayerMP teleportingPlayer, BlockPos pos, float pitch, float yaw){
         teleportingPlayer.getCapability(PlayerBackProvider.PLAYER_BACK_CAPABILITY, null).set(teleportingPlayer.getPosition());
-        playerTp(teleportingPlayer, pos, pitchYaw);
+        tp(teleportingPlayer, pos, pitch, yaw);
     }
 
-    public static void playerTp(EntityPlayerMP teleportingPlayer, BlockPos pos, Vec2f pitchYaw) {
+    public static void tp(EntityPlayerMP teleportingPlayer, BlockPos pos, float pitch, float yaw) {
         Set<SPacketPlayerPosLook.EnumFlags> set = EnumSet.noneOf(SPacketPlayerPosLook.EnumFlags.class);
         double x = pos.getX() + 0.5;
         double y = pos.getY();
         double z = pos.getZ() + 0.5;
         teleportingPlayer.dismountRidingEntity();
-        teleportingPlayer.connection.setPlayerLocation(x,y,z, pitchYaw.y, pitchYaw.x, set);
+        teleportingPlayer.connection.setPlayerLocation(x,y,z, yaw, pitch, set);
+    }
+
+    public static void playerTo(EntityPlayerMP teleportingPlayer, BlockPos pos) {
+        tpCanBack(teleportingPlayer, pos, teleportingPlayer.rotationPitch, teleportingPlayer.rotationYaw);
     }
 
     public static void playerToPlayer(EntityPlayerMP teleportingPlayer, EntityPlayerMP toPlayer) {
         BlockPos pos = toPlayer.getPosition();
-        Vec2f pitchYaw = toPlayer.getPitchYaw();
-        tpCanBack(teleportingPlayer, pos, pitchYaw);
+        tpCanBack(teleportingPlayer, pos, toPlayer.rotationPitch, toPlayer.rotationYaw);
     }
 
     public static String findAnotherPlayerName(MinecraftServer server, ICommandSender sender) {

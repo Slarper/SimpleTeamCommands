@@ -24,7 +24,7 @@ public class Home extends CommandBase {
         if (sender instanceof EntityPlayerMP) {
             EntityPlayerMP player = ((EntityPlayerMP) sender);
             IPlayerHome home = player.getCapability(PlayerHomeProvider.PLAYER_HOME_CAPABILITY,null);
-            SimpleTeamCommandsUtils.tpCanBack(player, home.get(), player.getPitchYaw());
+            SimpleTeamCommandsUtils.playerTo(player, home.get());
         }
     }
 

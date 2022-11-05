@@ -25,7 +25,7 @@ public class Back extends CommandBase {
         if (sender instanceof EntityPlayerMP) {
             EntityPlayerMP player = ((EntityPlayerMP) sender);
             IPlayerBack back = player.getCapability(PlayerBackProvider.PLAYER_BACK_CAPABILITY,null);
-            SimpleTeamCommandsUtils.tpCanBack(player, back.get(), player.getPitchYaw());
+            SimpleTeamCommandsUtils.playerTo(player, back.get());
         }
     }
 
