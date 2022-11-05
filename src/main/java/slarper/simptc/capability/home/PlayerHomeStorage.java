@@ -1,4 +1,4 @@
-package slarper.simptc.capability;
+package slarper.simptc.capability.home;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagIntArray;
@@ -8,10 +8,10 @@ import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
 
-public class PlayerBlockPosStorage implements Capability.IStorage<IPlayerBlockPos> {
+public class PlayerHomeStorage implements Capability.IStorage<IPlayerHome> {
     @Nullable
     @Override
-    public NBTBase writeNBT(Capability<IPlayerBlockPos> capability, IPlayerBlockPos instance, EnumFacing side) {
+    public NBTBase writeNBT(Capability<IPlayerHome> capability, IPlayerHome instance, EnumFacing side) {
         int[] intArray = new int[]{
                 instance.get().getX(),
                 instance.get().getY(),
@@ -21,7 +21,7 @@ public class PlayerBlockPosStorage implements Capability.IStorage<IPlayerBlockPo
     }
 
     @Override
-    public void readNBT(Capability<IPlayerBlockPos> capability, IPlayerBlockPos instance, EnumFacing side, NBTBase nbt) {
+    public void readNBT(Capability<IPlayerHome> capability, IPlayerHome instance, EnumFacing side, NBTBase nbt) {
         BlockPos pos = new BlockPos(
                 ((NBTTagIntArray)nbt).getIntArray()[0],
                 ((NBTTagIntArray)nbt).getIntArray()[1],

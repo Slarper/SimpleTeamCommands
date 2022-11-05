@@ -6,7 +6,7 @@ import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec2f;
-import slarper.simptc.capability.IPlayerBlockPos;
+import slarper.simptc.capability.back.IPlayerBack;
 import slarper.simptc.capability.back.PlayerBackProvider;
 
 import java.util.Arrays;
@@ -16,10 +16,8 @@ import java.util.Set;
 
 public class SimpleTeamCommandsUtils {
     public static void tpCanBack(EntityPlayerMP teleportingPlayer, BlockPos pos, Vec2f pitchYaw){
-        IPlayerBlockPos back = teleportingPlayer.getCapability(PlayerBackProvider.PLAYER_BACK_CAPABILITY, null);
-        BlockPos oldBack = new BlockPos(back.get().getX(), back.get().getY(), back.get().getZ());
+        teleportingPlayer.getCapability(PlayerBackProvider.PLAYER_BACK_CAPABILITY, null).set(teleportingPlayer.getPosition());
         playerTp(teleportingPlayer, pos, pitchYaw);
-        back.set(oldBack);
     }
 
     public static void playerTp(EntityPlayerMP teleportingPlayer, BlockPos pos, Vec2f pitchYaw) {

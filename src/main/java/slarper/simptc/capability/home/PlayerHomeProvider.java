@@ -5,16 +5,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import slarper.simptc.capability.IPlayerBlockPos;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class PlayerHomeProvider implements ICapabilitySerializable<NBTBase> {
-    @CapabilityInject(IPlayerBlockPos.class)
-    public static final Capability<IPlayerBlockPos> PLAYER_HOME_CAPABILITY = null;
+    @CapabilityInject(IPlayerHome.class)
+    public static final Capability<IPlayerHome> PLAYER_HOME_CAPABILITY = null;
 
-    private final IPlayerBlockPos instance = PLAYER_HOME_CAPABILITY.getDefaultInstance();
+    private final IPlayerHome instance = PLAYER_HOME_CAPABILITY.getDefaultInstance();
 
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {

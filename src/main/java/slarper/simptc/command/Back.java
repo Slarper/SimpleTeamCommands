@@ -5,7 +5,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import slarper.simptc.capability.IPlayerBlockPos;
+import slarper.simptc.capability.back.IPlayerBack;
 import slarper.simptc.capability.back.PlayerBackProvider;
 import slarper.simptc.util.SimpleTeamCommandsUtils;
 
@@ -24,7 +24,7 @@ public class Back extends CommandBase {
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         if (sender instanceof EntityPlayerMP) {
             EntityPlayerMP player = ((EntityPlayerMP) sender);
-            IPlayerBlockPos back = player.getCapability(PlayerBackProvider.PLAYER_BACK_CAPABILITY,null);
+            IPlayerBack back = player.getCapability(PlayerBackProvider.PLAYER_BACK_CAPABILITY,null);
             SimpleTeamCommandsUtils.tpCanBack(player, back.get(), player.getPitchYaw());
         }
     }
