@@ -1,0 +1,16 @@
+[
+{
+  "modid": "simptc",
+  "name": "Simple Team Commands",
+  "description": "sethome home back to here.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Slarper"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
