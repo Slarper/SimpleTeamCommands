@@ -3,8 +3,8 @@ package slarper.simptc;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import slarper.simptc.capability.IPlayerHome;
-import slarper.simptc.capability.PlayerHomeProvider;
+import slarper.simptc.capability.home.IPlayerHome;
+import slarper.simptc.capability.home.PlayerHomeProvider;
 
 public class EventHandler {
 

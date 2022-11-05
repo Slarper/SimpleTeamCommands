@@ -1,12 +1,11 @@
 package slarper.simptc.command;
 
 import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import slarper.simptc.capability.IPlayerHome;
-import slarper.simptc.capability.PlayerHomeProvider;
+import slarper.simptc.capability.home.IPlayerHome;
+import slarper.simptc.capability.home.PlayerHomeProvider;
 import slarper.simptc.util.SimpleTeamCommandsUtils;
 
 public class Home extends CommandBase {
@@ -27,5 +26,10 @@ public class Home extends CommandBase {
             IPlayerHome home = player.getCapability(PlayerHomeProvider.PLAYER_HOME_CAPABILITY,null);
             SimpleTeamCommandsUtils.playerTp(player, home.getPlayerHome(), player.getPitchYaw());
         }
+    }
+
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 0;
     }
 }

@@ -1,4 +1,4 @@
-package slarper.simptc.capability;
+package slarper.simptc.capability.home;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

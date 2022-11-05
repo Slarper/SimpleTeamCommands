@@ -2,10 +2,10 @@ package slarper.simptc;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import slarper.simptc.capability.CapabilityHandler;
-import slarper.simptc.capability.IPlayerHome;
-import slarper.simptc.capability.PlayerHome;
-import slarper.simptc.capability.PlayerHomeStorage;
+import slarper.simptc.capability.home.CapabilityHandler;
+import slarper.simptc.capability.home.IPlayerHome;
+import slarper.simptc.capability.home.PlayerHome;
+import slarper.simptc.capability.home.PlayerHomeStorage;
 
 public class CommonProxy {
     public void init()

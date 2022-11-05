@@ -9,17 +9,12 @@ import net.minecraft.util.math.BlockPos;
 import slarper.simptc.util.SimpleTeamCommandsUtils;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.List;
 
-/*
- * to : teleport to the nearest player
- * to [playerName] : teleport to the player
- */
-
-public class To extends CommandBase {
+public class Here extends CommandBase {
     @Override
     public String getName() {
-        return "to";
+        return "here";
     }
 
     @Override
@@ -50,7 +45,6 @@ public class To extends CommandBase {
         } else {
             return super.getTabCompletions(server, sender, args, targetPos);
         }
-
     }
 
     @Override
